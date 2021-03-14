@@ -8,16 +8,73 @@ class Calculator extends Component {
     super(props);
     this.state = {
       currentMoney: "",
-      increaseRate: "",
+      depositIncreaseRate: "",
       goalMoney: "",
+      investingGainRate: "",
       goalMoneyMultiplier: 10000,
       currentMoneyMultiplier: 10000,
+      enableButton: false,
     };
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: Number(e.target.value),
+    this.setState(
+      {
+        [e.target.name]: Number(e.target.value),
+      },
+      this.updateEnableButton
+    );
+  };
+
+  updateEnableButton = (e) => {
+    const {
+      currentMoney,
+      depositIncreaseRate,
+      investingGainRate,
+      goalMoney,
+    } = this.state;
+
+    if (
+      !(typeof currentMoney === "number") ||
+      currentMoney < 0 ||
+      !(typeof depositIncreaseRate === "number") ||
+      depositIncreaseRate < 0 ||
+      !(typeof investingGainRate === "number") ||
+      investingGainRate < 0 ||
+      !(typeof goalMoney === "number") ||
+      goalMoney < 0
+    ) {
+      this.setState({ enableButton: false });
+    } else {
+      this.setState({ enableButton: true });
+    }
+  };
+
+  handleClick = () => {
+    const {
+      currentMoney,
+      depositIncreaseRate,
+      investingGainRate,
+      goalMoney,
+    } = this.state;
+
+    if (
+      !(typeof currentMoney === "number") ||
+      currentMoney < 0 ||
+      !(typeof depositIncreaseRate === "number") ||
+      depositIncreaseRate < 0 ||
+      !(typeof investingGainRate === "number") ||
+      investingGainRate < 0 ||
+      !(typeof goalMoney === "number") ||
+      goalMoney < 0
+    )
+      return;
+
+    this.props.calculate({
+      currentMoney: this.state.currentMoney * this.state.currentMoneyMultiplier,
+      depositIncreaseRate: this.state.depositIncreaseRate,
+      investingGainRate: this.state.investingGainRate,
+      goalMoney: this.state.goalMoney * this.state.goalMoneyMultiplier,
     });
   };
 
@@ -27,7 +84,7 @@ class Calculator extends Component {
         <div className={styles.row}>
           <div className={styles.inputArea}>
             <div className={styles.inputBox}>
-              <span className="title">현재 자산: </span>
+              <span className="title">첫 연도 저축액: </span>
 
               <input
                 name="currentMoney"
@@ -46,9 +103,9 @@ class Calculator extends Component {
               </select>
             </div>
             <div className={styles.inputBox}>
-              <span className="title">매년 투자액 증가율: </span>
+              <span className="title">매년 저축 증가율: </span>
               <input
-                name="increaseRate"
+                name="depositIncreaseRate"
                 onChange={this.handleChange}
                 type="text"
                 placeholder="(숫자 입력)"
@@ -59,6 +116,16 @@ class Calculator extends Component {
             <span className="title">매년 투자액 증가량: </span>
             <input type="text" />
           </div> */}
+            <div className={styles.inputBox}>
+              <span className="title">매년 투자 수익률: </span>
+              <input
+                name="investingGainRate"
+                onChange={this.handleChange}
+                type="text"
+                placeholder="(숫자 입력)"
+              />
+              %
+            </div>
             <div className={styles.inputBox}>
               <span className="title">목표 금액: </span>
               <input
@@ -77,16 +144,9 @@ class Calculator extends Component {
                 <option value="1">원</option>
               </select>
             </div>
-            {this.state.goalMoneyMultiplier}
-
             <button
-              onClick={() => {
-                this.props.calculate({
-                  currentMoney: this.state.currentMoney,
-                  increaseRate: this.state.increaseRate,
-                  goalMoney: this.state.goalMoney,
-                });
-              }}
+              disabled={!this.state.enableButton}
+              onClick={this.handleClick}
             >
               계산
             </button>
