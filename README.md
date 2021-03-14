@@ -1,3 +1,5 @@
+# 경제적 자유를 위하여 목표 금액과 저축, 투자 금액을 입력하면 몇 년 뒤에 목표금액을 달성하는지 보여주는 프로그램입니다.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
