@@ -3,15 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const calculatorSlice = createSlice({
   name: "calculator",
   initialState: {
-    yearlyIncreasedMoneyList: [],
+    yearlytTotalMoneyList: [],
+    yearlyDeposiMoneyList: [],
   },
   reducers: {
     calculate: (state, action) => {
       console.log("calculate / payload:", action.payload);
 
       const {
-        currentMoney,
+        initialDepositMoney,
         depositIncreaseRate,
+        depositPeriod,
         investingGainRate,
         goalMoney,
         initialMoney,
@@ -19,22 +21,32 @@ export const calculatorSlice = createSlice({
 
       let yearlytTotalMoneyList = [];
       let yearlyDeposiMoneyList = [];
-      let increasedMoney = currentMoney;
-      let depositMoney = currentMoney;
-      let totalMoney = currentMoney + initialMoney;
+      let depositMoney = initialDepositMoney;
+      let totalMoney = initialDepositMoney + initialMoney;
       yearlytTotalMoneyList.push(totalMoney);
-      yearlyDeposiMoneyList.push(totalMoney);
+      yearlyDeposiMoneyList.push(depositMoney);
+
+      let cnt = 1;
 
       while (totalMoney < goalMoney) {
-        increasedMoney = totalMoney * (1 + investingGainRate * 0.01); // monthly increase rate
-        depositMoney = depositMoney * (1 + depositIncreaseRate * 0.01); // monthly increase rate
+        cnt++;
 
-        totalMoney = increasedMoney + depositMoney;
-        yearlyDeposiMoneyList.push(depositMoney);
+        totalMoney = totalMoney * (1 + investingGainRate * 0.01); // monthly increase rate
+
+        if (cnt <= depositPeriod) {
+          depositMoney = depositMoney * (1 + depositIncreaseRate * 0.01); // monthly increase rate
+          totalMoney = totalMoney + depositMoney;
+          yearlyDeposiMoneyList.push(depositMoney);
+        } else {
+          totalMoney = totalMoney;
+          yearlyDeposiMoneyList.push(0);
+        }
+
         yearlytTotalMoneyList.push(totalMoney);
       }
 
-      state.yearlyIncreasedMoneyList = yearlytTotalMoneyList;
+      state.yearlytTotalMoneyList = yearlytTotalMoneyList;
+      state.yearlyDeposiMoneyList = yearlyDeposiMoneyList;
     },
   },
 });

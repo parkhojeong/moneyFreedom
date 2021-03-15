@@ -7,12 +7,12 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMoney: "",
+      initialDepositMoney: "",
       depositIncreaseRate: "",
       goalMoney: "",
       investingGainRate: "",
       goalMoneyMultiplier: 10000,
-      currentMoneyMultiplier: 10000,
+      initialDepositMoneyMultiplier: 10000,
       enableButton: false,
     };
   }
@@ -28,16 +28,17 @@ class Calculator extends Component {
 
   updateEnableButton = (e) => {
     const {
-      currentMoney,
+      initialDepositMoney,
       depositIncreaseRate,
       investingGainRate,
       goalMoney,
       initialMoney,
+      depositPeriod,
     } = this.state;
 
     if (
-      !(typeof currentMoney === "number") ||
-      currentMoney < 0 ||
+      !(typeof initialDepositMoney === "number") ||
+      initialDepositMoney < 0 ||
       !(typeof depositIncreaseRate === "number") ||
       depositIncreaseRate < 0 ||
       !(typeof investingGainRate === "number") ||
@@ -45,7 +46,9 @@ class Calculator extends Component {
       !(typeof goalMoney === "number") ||
       goalMoney < 0 ||
       !(typeof initialMoney === "number") ||
-      initialMoney < 0
+      initialMoney < 0 ||
+      !Number.isInteger(depositPeriod) ||
+      depositPeriod <= 0
     ) {
       this.setState({ enableButton: false });
     } else {
@@ -55,16 +58,17 @@ class Calculator extends Component {
 
   handleClick = () => {
     const {
-      currentMoney,
+      initialDepositMoney,
       depositIncreaseRate,
       investingGainRate,
       goalMoney,
       initialMoney,
+      depositPeriod,
     } = this.state;
 
     if (
-      !(typeof currentMoney === "number") ||
-      currentMoney < 0 ||
+      !(typeof initialDepositMoney === "number") ||
+      initialDepositMoney < 0 ||
       !(typeof depositIncreaseRate === "number") ||
       depositIncreaseRate < 0 ||
       !(typeof investingGainRate === "number") ||
@@ -72,16 +76,20 @@ class Calculator extends Component {
       !(typeof goalMoney === "number") ||
       goalMoney < 0 ||
       !(typeof initialMoney === "number") ||
-      initialMoney < 0
+      initialMoney < 0 ||
+      !Number.isInteger(depositPeriod)
     )
       return;
 
     this.props.calculate({
-      currentMoney: this.state.currentMoney * this.state.currentMoneyMultiplier,
+      initialDepositMoney:
+        this.state.initialDepositMoney *
+        this.state.initialDepositMoneyMultiplier,
       depositIncreaseRate: this.state.depositIncreaseRate,
       investingGainRate: this.state.investingGainRate,
       goalMoney: this.state.goalMoney * this.state.goalMoneyMultiplier,
       initialMoney: this.state.initialMoney * 10000,
+      depositPeriod: this.state.depositPeriod,
     });
   };
 
@@ -96,21 +104,21 @@ class Calculator extends Component {
                 name="initialMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 500"
+                placeholder="(숫자)"
               />
               만원
             </div>
             <div className={styles.inputBox}>
               <span className="title">첫 연도 저축액: </span>
               <input
-                name="currentMoney"
+                name="initialDepositMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 100"
+                placeholder="(숫자)"
               />
               <select
-                name="currentMoneyMultiplier"
-                value={this.state.currentMoneyMultiplier}
+                name="initialDepositMoneyMultiplier"
+                value={this.state.initialDepositMoneyMultiplier}
                 onChange={this.handleChange}
               >
                 <option value="100000000">억원</option>
@@ -124,9 +132,19 @@ class Calculator extends Component {
                 name="depositIncreaseRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 10"
+                placeholder="(숫자)"
               />
               %
+            </div>
+            <div className={styles.inputBox}>
+              <span className="title">저축 기간: </span>
+              <input
+                name="depositPeriod"
+                onChange={this.handleChange}
+                type="text"
+                placeholder="(정수, 최소 1년)"
+              />
+              년
             </div>
             {/* <div className={styles.inputBox}>
             <span className="title">매년 투자액 증가량: </span>
@@ -138,7 +156,7 @@ class Calculator extends Component {
                 name="investingGainRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 5"
+                placeholder="(숫자)"
               />
               %
             </div>
@@ -148,7 +166,7 @@ class Calculator extends Component {
                 name="goalMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 5000"
+                placeholder="(숫자)"
               />
               <select
                 name="goalMoneyMultiplier"
