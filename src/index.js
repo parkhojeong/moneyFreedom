@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Router, Route } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -17,6 +17,9 @@ store.subscribe(() => {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* <Router basename={"MoneyFreedom"}>
+        <Route component={App} />
+      </Router> */}
       <App />
     </Provider>
   </React.StrictMode>,

@@ -1,5 +1,5 @@
 {
-  "hompage": "https://parkhojeong.github.io/moneyFreedom",
+  "hompage": "https://parkhojeong.github.io/moneyFreedom/",
   "name": "get-goal-money",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set PUBLIC_URL=https://parkhojeong.github.io/moneyFreedom/&& react-scripts build",
+    "build-localhost": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
