@@ -33,8 +33,6 @@ export const calculatorSlice = createSlice({
         yearlytTotalMoneyList.push(totalMoney);
       }
 
-      yearlytTotalMoneyList.push(totalMoney);
-
       state.yearlyIncreasedMoneyList = yearlytTotalMoneyList;
     },
   },
