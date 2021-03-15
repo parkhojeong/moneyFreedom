@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h2>경제적 자유를 위하여!</h2>
         <Calculator />
         <EstimateGoal />
       </header>
