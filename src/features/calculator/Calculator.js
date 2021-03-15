@@ -32,6 +32,7 @@ class Calculator extends Component {
       depositIncreaseRate,
       investingGainRate,
       goalMoney,
+      initialMoney,
     } = this.state;
 
     if (
@@ -42,7 +43,9 @@ class Calculator extends Component {
       !(typeof investingGainRate === "number") ||
       investingGainRate < 0 ||
       !(typeof goalMoney === "number") ||
-      goalMoney < 0
+      goalMoney < 0 ||
+      !(typeof initialMoney === "number") ||
+      initialMoney < 0
     ) {
       this.setState({ enableButton: false });
     } else {
@@ -56,6 +59,7 @@ class Calculator extends Component {
       depositIncreaseRate,
       investingGainRate,
       goalMoney,
+      initialMoney,
     } = this.state;
 
     if (
@@ -66,7 +70,9 @@ class Calculator extends Component {
       !(typeof investingGainRate === "number") ||
       investingGainRate < 0 ||
       !(typeof goalMoney === "number") ||
-      goalMoney < 0
+      goalMoney < 0 ||
+      !(typeof initialMoney === "number") ||
+      initialMoney < 0
     )
       return;
 
@@ -75,6 +81,7 @@ class Calculator extends Component {
       depositIncreaseRate: this.state.depositIncreaseRate,
       investingGainRate: this.state.investingGainRate,
       goalMoney: this.state.goalMoney * this.state.goalMoneyMultiplier,
+      initialMoney: this.state.initialMoney * 10000,
     });
   };
 
@@ -84,8 +91,17 @@ class Calculator extends Component {
         <div className={styles.row}>
           <div className={styles.inputArea}>
             <div className={styles.inputBox}>
+              <span className="title">초기 금액: </span>
+              <input
+                name="initialMoney"
+                onChange={this.handleChange}
+                type="text"
+                placeholder="(숫자 입력)"
+              />
+              만원
+            </div>
+            <div className={styles.inputBox}>
               <span className="title">첫 연도 저축액: </span>
-
               <input
                 name="currentMoney"
                 onChange={this.handleChange}
