@@ -104,7 +104,7 @@ class Calculator extends Component {
                 name="initialMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 500"
+                placeholder="(숫자)"
               />
               만원
             </div>
@@ -114,7 +114,7 @@ class Calculator extends Component {
                 name="initialDepositMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 100"
+                placeholder="(숫자)"
               />
               <select
                 name="initialDepositMoneyMultiplier"
@@ -132,7 +132,7 @@ class Calculator extends Component {
                 name="depositIncreaseRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 10"
+                placeholder="(숫자)"
               />
               %
             </div>
@@ -142,7 +142,7 @@ class Calculator extends Component {
                 name="depositPeriod"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(정수 입력, 1년 이상) 5"
+                placeholder="(정수, 최소 1년)"
               />
               년
             </div>
@@ -156,7 +156,7 @@ class Calculator extends Component {
                 name="investingGainRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 5"
+                placeholder="(숫자)"
               />
               %
             </div>
@@ -166,7 +166,7 @@ class Calculator extends Component {
                 name="goalMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력) 5000"
+                placeholder="(숫자)"
               />
               <select
                 name="goalMoneyMultiplier"
