@@ -14,15 +14,16 @@ export const calculatorSlice = createSlice({
         depositIncreaseRate,
         investingGainRate,
         goalMoney,
+        initialMoney,
       } = action.payload;
 
       let yearlytTotalMoneyList = [];
       let yearlyDeposiMoneyList = [];
       let increasedMoney = currentMoney;
       let depositMoney = currentMoney;
-      let totalMoney = currentMoney;
-      yearlytTotalMoneyList.push(currentMoney);
-      yearlyDeposiMoneyList.push(currentMoney);
+      let totalMoney = currentMoney + initialMoney;
+      yearlytTotalMoneyList.push(totalMoney);
+      yearlyDeposiMoneyList.push(totalMoney);
 
       while (totalMoney < goalMoney) {
         increasedMoney = totalMoney * (1 + investingGainRate * 0.01); // monthly increase rate
