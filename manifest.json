@@ -2,7 +2,7 @@
   "short_name": "MoneyFreedom",
   "name": "when i get goal money",
 
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
