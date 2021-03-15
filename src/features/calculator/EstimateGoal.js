@@ -16,7 +16,7 @@ export default function EstimateGoal() {
     labels: labelData,
     datasets: [
       {
-        label: "경제적 자유를 위하여!",
+        label: "총 자산",
         fill: false,
         lineTension: 0.1,
         backgroundColor: "rgba(75,192,192,0.4)",
@@ -44,13 +44,13 @@ export default function EstimateGoal() {
   return (
     <div>
       <div>
-        <h2>
+        <h3>
           당신의 목표 금액을 모으기 위해서는{" "}
           {yearlyIncreasedMoneyList.length === 0
             ? "?"
             : yearlyIncreasedMoneyList.length - 1}
           년 걸립니다
-        </h2>
+        </h3>
       </div>
       <Line data={data} />
     </div>
