@@ -3,14 +3,20 @@ import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 
 export default function EstimateGoal() {
-  const { yearlyIncreasedMoneyList } = useSelector((state) => state.calculator);
+  const { yearlytTotalMoneyList, yearlyDeposiMoneyList } = useSelector(
+    (state) => state.calculator
+  );
 
-  const chartData = yearlyIncreasedMoneyList.map((money, index) => {
+  const chartData = yearlytTotalMoneyList.map((money, index) => {
     return Math.floor(money / 10000);
   });
-  const labelData = yearlyIncreasedMoneyList.map(
+  const labelData = yearlytTotalMoneyList.map(
     (money, index) => index + "년 뒤"
   );
+
+  const chartData2 = yearlyDeposiMoneyList.map((money, index) => {
+    return Math.floor(money / 10000);
+  });
 
   const data = {
     labels: labelData,
@@ -36,6 +42,27 @@ export default function EstimateGoal() {
         pointHitRadius: 10,
         data: chartData,
       },
+      {
+        label: "해당 년도 저축액",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(35,32,192,0.4)",
+        borderColor: "rgba(35,32,192,1)",
+        borderCapStyle: "butt",
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: "miter",
+        pointBorderColor: "rgba(35,32,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(35,32,192,1)",
+        pointHoverBorderColor: "rgba(5,32,192,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: chartData2,
+      },
     ],
   };
 
@@ -46,9 +73,9 @@ export default function EstimateGoal() {
       <div>
         <h3>
           당신의 목표 금액을 모으기 위해서는{" "}
-          {yearlyIncreasedMoneyList.length === 0
+          {yearlytTotalMoneyList.length === 0
             ? "?"
-            : yearlyIncreasedMoneyList.length - 1}
+            : yearlytTotalMoneyList.length - 1}
           년 걸립니다
         </h3>
       </div>
