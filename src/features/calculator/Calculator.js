@@ -96,7 +96,7 @@ class Calculator extends Component {
                 name="initialMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력)"
+                placeholder="(숫자 입력) 500"
               />
               만원
             </div>
@@ -106,7 +106,7 @@ class Calculator extends Component {
                 name="currentMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력)"
+                placeholder="(숫자 입력) 100"
               />
               <select
                 name="currentMoneyMultiplier"
@@ -124,7 +124,7 @@ class Calculator extends Component {
                 name="depositIncreaseRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력)"
+                placeholder="(숫자 입력) 10"
               />
               %
             </div>
@@ -138,7 +138,7 @@ class Calculator extends Component {
                 name="investingGainRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력)"
+                placeholder="(숫자 입력) 5"
               />
               %
             </div>
@@ -148,7 +148,7 @@ class Calculator extends Component {
                 name="goalMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자 입력)"
+                placeholder="(숫자 입력) 5000"
               />
               <select
                 name="goalMoneyMultiplier"
