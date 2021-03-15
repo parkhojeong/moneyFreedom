@@ -46,7 +46,10 @@ export default function EstimateGoal() {
       <div>
         <h2>
           당신의 목표 금액을 모으기 위해서는{" "}
-          {yearlyIncreasedMoneyList.length - 1} 년 걸립니다
+          {yearlyIncreasedMoneyList.length === 0
+            ? "?"
+            : yearlyIncreasedMoneyList.length - 1}
+          년 걸립니다
         </h2>
       </div>
       <Line data={data} />
