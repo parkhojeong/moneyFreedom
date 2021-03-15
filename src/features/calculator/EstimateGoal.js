@@ -9,7 +9,7 @@ export default function EstimateGoal() {
     return Math.floor(money / 10000);
   });
   const labelData = yearlyIncreasedMoneyList.map(
-    (money, index) => index + "년 후"
+    (money, index) => index + "년 뒤"
   );
 
   const data = {
@@ -45,8 +45,8 @@ export default function EstimateGoal() {
     <div>
       <div>
         <h2>
-          당신의 목표 금액을 모으기 위해서는 {yearlyIncreasedMoneyList.length}{" "}
-          년 걸립니다
+          당신의 목표 금액을 모으기 위해서는{" "}
+          {yearlyIncreasedMoneyList.length - 1} 년 걸립니다
         </h2>
       </div>
       <Line data={data} />
