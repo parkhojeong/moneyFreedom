@@ -99,22 +99,20 @@ class Calculator extends Component {
         <div className={styles.row}>
           <div className={styles.inputArea}>
             <div className={styles.inputBox}>
-              <span className="title">초기 금액: </span>
+              <span className="title">초기 자본금: </span>
               <input
                 name="initialMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자)"
               />
               만원
             </div>
             <div className={styles.inputBox}>
-              <span className="title">첫 연도 저축액: </span>
+              <span className="title">첫 해 저축액: </span>
               <input
                 name="initialDepositMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자)"
               />
               <select
                 name="initialDepositMoneyMultiplier"
@@ -127,22 +125,21 @@ class Calculator extends Component {
               </select>
             </div>
             <div className={styles.inputBox}>
-              <span className="title">매년 저축 증가율: </span>
+              <span className="title">매년 저축액 증가율: </span>
               <input
                 name="depositIncreaseRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자)"
               />
               %
             </div>
             <div className={styles.inputBox}>
-              <span className="title">저축 기간: </span>
+              <span className="title">저축 기간(최소 1년 이상): </span>
               <input
                 name="depositPeriod"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(정수, 최소 1년)"
+                placeholder="(정수)"
               />
               년
             </div>
@@ -156,7 +153,6 @@ class Calculator extends Component {
                 name="investingGainRate"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자)"
               />
               %
             </div>
@@ -166,7 +162,6 @@ class Calculator extends Component {
                 name="goalMoney"
                 onChange={this.handleChange}
                 type="text"
-                placeholder="(숫자)"
               />
               <select
                 name="goalMoneyMultiplier"
